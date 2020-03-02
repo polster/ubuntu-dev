@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    ansible_user_vars_file: "{{ lookup('env','ANSIBLE_USER_VARS_FILE') }}"
+
+  pre_tasks:
+    - debug:
+        msg: "User config is: {{ ansible_user_vars_file }}"
+    - name: Import user specific vars file
+      include_vars:
+        file: "{{ ansible_user_vars_file }}"
+        name: user_config
+
+  roles:
+    - role: roles/user
+      user_name: "{{ user_config.user_name }}"
+      user_password: "{{ user_config.user_password }}"
+      user_groups: "{{ user_config.user_groups }}"
+      user_keyboard_model: "{{ user_config.user_keyboard_model }}"
+      user_keyboard_layout: "{{ user_config.user_keyboard_layout }}"
+      user_keyboard_variant: "{{ user_config.user_keyboard_variant }}"
+      user_keyboard_backspace: "{{ user_config.user_keyboard_backspace }}"

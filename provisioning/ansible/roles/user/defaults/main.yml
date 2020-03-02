@@ -1,0 +1,31 @@
+---
+
+# The user name to be created if not present
+user_name: ''
+# The users password, encrypted
+# Use: python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
+user_password: ''
+# Comma separated list of secondary groups the user belongs to
+user_groups: ''
+
+# The default user shell
+user_shell: /bin/bash
+
+# Set no if no default ssh key should be generated
+user_ssh_key_generate: yes
+# The user's ssh key file
+user_ssh_key_file: .ssh/id_rsa
+# The user's ssh key length
+user_ssh_key_bits: 2048
+
+# The sudoers group
+user_sudoers_group: wheel
+# Set to no, if user should not get sudo
+user_sudoers_enable: yes
+
+# Keyboard layout
+user_keyboard_model: pc104
+user_keyboard_layout: us
+user_keyboard_variant: ''
+user_keyboard_options: ''
+user_keyboard_backspace: guess

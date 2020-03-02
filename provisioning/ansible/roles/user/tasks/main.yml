@@ -1,0 +1,15 @@
+- name: Add user {{ user_name }}
+  user:
+    name: "{{ user_name }}"
+    password: "{{ user_password }}"
+    groups: "{{ user_groups }}"
+    shell: "{{ user_shell }}"
+    generate_ssh_key: "{{ user_ssh_key_generate }}"
+    ssh_key_bits: "{{ user_ssh_key_bits }}"
+    ssh_key_file: "{{ user_ssh_key_file }}"
+    state: present
+
+- include_tasks: setup_sudo.yml
+  when: user_sudoers_enable
+
+- include_tasks: setup_keyboard.yml

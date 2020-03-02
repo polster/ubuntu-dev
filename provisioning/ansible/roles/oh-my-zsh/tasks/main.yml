@@ -1,0 +1,13 @@
+---
+
+- name: Install dependencies
+  package:
+    name:
+      - zsh
+      - git
+    state: present
+     
+- name: "Make ZSH default shell for user {{ ansible_env.USER }}"
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /bin/zsh

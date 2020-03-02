@@ -1,0 +1,26 @@
+---
+
+- name: Ensure dependencies are installed
+  package:
+    name:
+      - sudo
+    state: present
+
+- name: Create sudoers group
+  group:
+    name: "{{ user_sudoers_group }}"
+    state: present
+
+- name: Allow group {{ user_sudoers_group }} to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^%{{ user_sudoers_group }}"
+    line: "%{{ user_sudoers_group }} ALL=(ALL) NOPASSWD: ALL"
+    validate: "visudo -cf %s"
+
+- name: Add user to sudoers
+  user:
+    name: "{{ user_name }}"
+    groups: "{{ user_sudoers_group }}"
+    append: yes
