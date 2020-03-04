@@ -24,3 +24,5 @@
       user_keyboard_backspace: "{{ user_config.user_keyboard_backspace }}"
     - role: roles/oh-my-zsh
       oh_my_zsh_user_name: "{{ user_config.user_name }}"
+    - role: roles/java
+    - role: roles/maven

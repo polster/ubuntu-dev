@@ -1,0 +1,9 @@
+---
+
+- name: Check if maven version already installed
+  stat: 
+    path: '{{ maven_install_root }}/apache-maven-{{ maven_version }}'
+  register: maven_installed
+
+- import_tasks: setup_maven.yml
+  when: not maven_installed.stat.exists

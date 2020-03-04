@@ -1,0 +1,11 @@
+---
+
+# The maven version
+maven_version: "3.6.3"
+
+# The root dir for all maven installations
+maven_install_root: "/opt/apache-maven"
+
+# The download resources
+maven_file_name: apache-maven-{{ maven_version }}-bin.tar.gz
+maven_download_url: "http://archive.apache.org/dist/maven/maven-{{ maven_version|regex_replace('\\..*', '') }}/{{ maven_version }}/binaries"

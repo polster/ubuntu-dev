@@ -1,0 +1,7 @@
+---
+
+# The major version
+java_openjdk_version: 11
+
+# Use jre, jre-headless or jdk
+java_openjdk_package: jdk

@@ -1,0 +1,24 @@
+---
+
+- name: Add openjdk repo
+  apt_repository:
+    repo: 'ppa:openjdk-r/ppa'
+    state: present
+    update_cache: true
+
+- name: Install openjdk
+  apt:
+    name: "{{ java_openjdk_package_name }}"
+    update_cache: true
+    state: present
+
+- name: Set openjdk as default
+  alternatives:
+     name: java
+     path: "{{ java_openjdk_java_bin }}"
+
+- name: Add symlink
+  file:
+    state: link
+    src: "{{ java_openjdk_dir }}"
+    dest: "{{ java_openjdk_default_java_link }}"
