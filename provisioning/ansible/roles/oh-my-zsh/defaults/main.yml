@@ -1,0 +1,11 @@
+---
+
+# The name of the user
+oh_my_zsh_user_name: ''
+
+# Default theme
+oh_my_zsh_theme: robbyrussell
+
+# Default plugins
+oh_my_zsh_plugins:
+  - git

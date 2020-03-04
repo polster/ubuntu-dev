@@ -1,0 +1,34 @@
+---
+
+- name: Ensure dependencies are installed
+  package:
+    name:
+      - zsh
+      - git
+    state: present
+
+- name: Git clone oh-my-zsh
+  become_user: "{{ oh_my_zsh_user_name }}"
+  command: "git clone -c core.autocrlf=input --depth=1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh"
+  args:
+    chdir: "~{{ oh_my_zsh_user_name }}"
+    creates: "~{{ oh_my_zsh_user_name }}/.oh-my-zsh"
+
+- name: Set permissions of oh-my-zsh for users
+  file:
+    path: "~{{ oh_my_zsh_user_name }}/.oh-my-zsh"
+    mode: "go-w"
+    recurse: yes
+
+- name: Create default .zshrc for user
+  become_user: '{{ oh_my_zsh_user_name }}'
+  template:
+    src: zshrc.j2
+    dest: '~{{ oh_my_zsh_user_name }}/.zshrc'
+    backup: yes
+    mode: 'u=rw,go=r'
+
+- name: Make ZSH default shell for user
+  user:
+    name: "{{ oh_my_zsh_user_name }}"
+    shell: /bin/zsh

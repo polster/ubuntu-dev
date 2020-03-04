@@ -22,3 +22,5 @@
       user_keyboard_layout: "{{ user_config.user_keyboard_layout }}"
       user_keyboard_variant: "{{ user_config.user_keyboard_variant }}"
       user_keyboard_backspace: "{{ user_config.user_keyboard_backspace }}"
+    - role: roles/oh-my-zsh
+      oh_my_zsh_user_name: "{{ user_config.user_name }}"
