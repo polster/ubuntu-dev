@@ -12,6 +12,8 @@ apt-get install -y \
   curl \
   wget \
   git \
+  meld \
+  jq \
   terminator
 
 # Do an overall upgrade
