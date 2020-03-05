@@ -26,3 +26,4 @@
       oh_my_zsh_user_name: "{{ user_config.user_name }}"
     - role: roles/java
     - role: roles/maven
+    - role: roles/jetbrains-toolbox

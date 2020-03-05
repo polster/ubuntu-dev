@@ -1,0 +1,23 @@
+---
+
+- name: "Download toolbox version {{ jetbrains_toolbox_version }}"
+  get_url:
+    url: "{{ jetbrains_toolbox_download_url }}"
+    dest: "{{ jetbrains_toolbox_temporary_file_name }}"
+
+- name: "Unpack toolbox app"
+  unarchive:
+    src: "{{ jetbrains_toolbox_temporary_file_name }}"
+    dest: "{{ jetbrains_toolbox_install_dir }}"
+    copy: no
+
+- name: "Remove temporary file"
+  file:
+    name: "{{ jetbrains_toolbox_temporary_file_name }}"
+    state: "absent"
+
+- name: "Create symbolic link for launch"
+  file:
+    state: link
+    src: "{{ jetbrains_toolbox_install_dir }}/jetbrains-toolbox-{{ jetbrains_toolbox_version }}/jetbrains-toolbox"
+    dest: '/usr/local/bin/jetbrains-toolbox'
